@@ -1,0 +1,874 @@
+{
+  "summary": {
+    "Выдан ответ (не «не знаю»)": "7/10 (70%)",
+    "Из выданных ответов — с источниками": "7/7 (100%)",
+    "Из выданных ответов — с цитатами": "7/7 (100%)",
+    "Нужный файл среди источников": "6/8 (75%)",
+    "Цитат принято (дословно найдены)": 16,
+    "Цитат отброшено (не найдены дословно)": 2,
+    "Ответов, исправленных со 2-й попытки": 3,
+    "Ключевые элементы ответа есть в цитатах": "97%",
+    "Судья: подтверждён / частично / не подтверждён": "3 / 4 / 0",
+    "Обязательные факты в ответе": "62%",
+    "«Не знаю» на вопросах с ответом (модель / не подтверждено цитатами / порог)": "1 / 2 / 0",
+    "«Не знаю» на вопросах без ответа / расплывчатых": "4/4 (100%)",
+    "…с уточняющим вопросом": "4/4 (100%)",
+    "…остановлено до модели (нет такого дня / порог близости)": "4/4 (100%)",
+    "Токены ответов: вход / выход": "23682 / 4952",
+    "Токены судьи: вход / выход": "2172 / 1113"
+  },
+  "rows": [
+    {
+      "id": 1,
+      "type": "project",
+      "q": "Какую экономию входных токенов дало сжатие истории в проекте дня 9 на реальном API и какие были цифры до и после?",
+      "expected": "Экономия 56.7% input-токенов: 80118 без сжатия против 34694 со сжатием (сценарий из 20 реплик, gpt-4o-mini).",
+      "expected_sources": [
+        "day9-context-compression/RESULTS.md",
+        "day9-context-compression/README.md"
+      ],
+      "question": "Какую экономию входных токенов дало сжатие истории в проекте дня 9 на реальном API и какие были цифры до и после?",
+      "status": "answered",
+      "answer": "Экономия входных токенов составила 56.7%: до сжатия — 80118, после сжатия — 34694; экономия — 45424 ток. [1]",
+      "sources": [
+        {
+          "n": 1,
+          "source": "day9-context-compression/RESULTS.md",
+          "section": "День 9. Результаты сравнения: сжатие истории > 2. Расход токенов (реальные `usage.prompt_tokens` из API)",
+          "chunk_id": "day9-context-compression/RESULTS.md#structure-002",
+          "quoted": true
+        }
+      ],
+      "quotes": [
+        {
+          "n": 1,
+          "text": "| input-токены (сумма за диалог) | 80118 | 34694 |",
+          "source": "day9-context-compression/RESULTS.md",
+          "section": "День 9. Результаты сравнения: сжатие истории > 2. Расход токенов (реальные `usage.prompt_tokens` из API)"
+        },
+        {
+          "n": 1,
+          "text": "| Экономия input | — | 45424 ток. (56.7%) |",
+          "source": "day9-context-compression/RESULTS.md",
+          "section": "День 9. Результаты сравнения: сжатие истории > 2. Расход токенов (реальные `usage.prompt_tokens` из API)"
+        }
+      ],
+      "clarification": "",
+      "reason": "",
+      "rejected_quotes": [],
+      "attempts": 2,
+      "raw_answer": "",
+      "top_score": 0.5684,
+      "gate": 0.4535,
+      "trace": {
+        "queries": [
+          "Какую экономию входных токенов дало сжатие истории в проекте дня 9 на реальном API и какие были цифры до и после?",
+          "проект день 9 day9 сжатие истории history compression экономия входных токенов input token savings реальный API real API до и после before after количество токенов token count сокращение контекста context reduction история сообщений message history compress_history compress_conversation token_usage input_tokens README Python"
+        ],
+        "candidates": 12,
+        "dropped": [],
+        "day_filter": "day9-",
+        "after_filter": 12,
+        "final": 4
+      },
+      "usage": {
+        "prompt_tokens": 3126,
+        "completion_tokens": 544
+      },
+      "has_sources": true,
+      "has_quotes": true,
+      "right_source": true,
+      "facts": 1.0,
+      "lexical": {
+        "method": "ключевые элементы",
+        "score": 1.0,
+        "checked": [
+          "56.7%",
+          "80118",
+          "34694",
+          "45424"
+        ],
+        "unsupported": []
+      },
+      "judge": {
+        "verdict": "partial",
+        "unsupported_claims": [
+          "Указание, что это было в проекте дня 9",
+          "Указание, что данные получены на реальном API"
+        ],
+        "comment": "Цитаты подтверждают значения до и после сжатия, абсолютную экономию 45424 токена и процент 56.7%, но не подтверждают контекст проекта дня 9 и реального API.",
+        "usage": {
+          "prompt_tokens": 272,
+          "completion_tokens": 148
+        }
+      }
+    },
+    {
+      "id": 2,
+      "type": "project",
+      "q": "Какие три стратегии управления контекстом реализованы в проекте дня 10?",
+      "expected": "Sliding Window (последние N сообщений), Sticky Facts / Key-Value Memory (блок фактов + окно), Branching (ветки диалога от checkpoint).",
+      "expected_sources": [
+        "day10-context-strategies/"
+      ],
+      "question": "Какие три стратегии управления контекстом реализованы в проекте дня 10?",
+      "status": "answered",
+      "answer": "В проекте реализованы три стратегии: SlidingWindowStrategy — хранение последних N сообщений; FactsStrategy — блок facts с важными данными и последние N сообщений; BranchingStrategy — дерево сообщений с checkpoint и независимыми ветками [1].",
+      "sources": [
+        {
+          "n": 1,
+          "source": "day10-context-strategies/context_strategies.py",
+          "section": "шапка модуля: docstring и импорты",
+          "chunk_id": "day10-context-strategies/context_strategies.py#structure-000",
+          "quoted": true
+        }
+      ],
+      "quotes": [
+        {
+          "n": 1,
+          "text": "1) SlidingWindowStrategy — храним только последние N сообщений, остальное отбрасываем.\n2) FactsStrategy         — отдельный блок \"facts\" (ключ-значение) с важными данными",
+          "source": "day10-context-strategies/context_strategies.py",
+          "section": "шапка модуля: docstring и импорты"
+        },
+        {
+          "n": 1,
+          "text": "3) BranchingStrategy     — дерево сообщений: можно поставить checkpoint, создать\n                            от него несколько веток и вести их независимо,\n                            переключаясь между ветками.",
+          "source": "day10-context-strategies/context_strategies.py",
+          "section": "шапка модуля: docstring и импорты"
+        }
+      ],
+      "clarification": "",
+      "reason": "",
+      "rejected_quotes": [],
+      "attempts": 1,
+      "raw_answer": "",
+      "top_score": 0.5998,
+      "gate": 0.4535,
+      "trace": {
+        "queries": [
+          "Какие три стратегии управления контекстом реализованы в проекте дня 10?",
+          "проект день 10 day10 три стратегии управления контекстом context management strategies контекстная стратегия context strategy управление контекстом context management README Python функции функции классы файлы"
+        ],
+        "candidates": 12,
+        "dropped": [],
+        "day_filter": "day10-",
+        "after_filter": 12,
+        "final": 4
+      },
+      "usage": {
+        "prompt_tokens": 1660,
+        "completion_tokens": 341
+      },
+      "has_sources": true,
+      "has_quotes": true,
+      "right_source": true,
+      "facts": 0.67,
+      "lexical": {
+        "method": "ключевые элементы",
+        "score": 1.0,
+        "checked": [
+          "SlidingWindowStrategy",
+          "FactsStrategy",
+          "facts",
+          "BranchingStrategy",
+          "checkpoint"
+        ],
+        "unsupported": []
+      },
+      "judge": {
+        "verdict": "partial",
+        "unsupported_claims": [
+          "FactsStrategy — хранение блока facts с важными данными и последних N сообщений"
+        ],
+        "comment": "Названия трёх стратегий и описания SlidingWindowStrategy и BranchingStrategy подтверждены, но добавление последних N сообщений к FactsStrategy в цитатах отсутствует.",
+        "usage": {
+          "prompt_tokens": 295,
+          "completion_tokens": 168
+        }
+      }
+    },
+    {
+      "id": 3,
+      "type": "project",
+      "q": "На какие слои разделена память агента в проекте дня 11 и где хранится долговременная память?",
+      "expected": "Три слоя: краткосрочная (текущий диалог), рабочая (данные задачи), долговременная (профиль, решения, знания); долговременная хранится в файле memory_store.json.",
+      "expected_sources": [
+        "day11-memory-layers/"
+      ],
+      "question": "На какие слои разделена память агента в проекте дня 11 и где хранится долговременная память?",
+      "status": "answered",
+      "answer": "Память агента разделена на краткосрочную (`ShortTermMemory`), рабочую (`WorkingMemory`) и долговременную (`LongTermMemory`). Долговременная память хранится в файле `memory_store.json` и переживает перезапуск [2].",
+      "sources": [
+        {
+          "n": 2,
+          "source": "day11-memory-layers/README.md",
+          "section": "День 11. Модель памяти агента (memory layers) > Описание модели памяти",
+          "chunk_id": "day11-memory-layers/README.md#structure-001",
+          "quoted": true
+        }
+      ],
+      "quotes": [
+        {
+          "n": 2,
+          "text": "| **Краткосрочная** (`ShortTermMemory`) | последние N реплик диалога дословно | до вытеснения из окна | в массиве `messages` |",
+          "source": "day11-memory-layers/README.md",
+          "section": "День 11. Модель памяти агента (memory layers) > Описание модели памяти"
+        },
+        {
+          "n": 2,
+          "text": "| **Рабочая** (`WorkingMemory`) | слоты текущей задачи: название, собранные параметры, что ещё не заполнено, заметки | пока задача не закрыта | блок `=== РАБОЧАЯ ПАМЯТЬ ===` в system |",
+          "source": "day11-memory-layers/README.md",
+          "section": "День 11. Модель памяти агента (memory layers) > Описание модели памяти"
+        },
+        {
+          "n": 2,
+          "text": "| **Долговременная** (`LongTermMemory`) | `profile` (кто пользователь), `decisions` (принятые решения), `knowledge` (факты о проекте) | постоянно, файл `memory_store.json` — переживает перезапуск | блок `=== ДОЛГОВРЕМЕННАЯ ПАМЯТЬ ===` в system |",
+          "source": "day11-memory-layers/README.md",
+          "section": "День 11. Модель памяти агента (memory layers) > Описание модели памяти"
+        }
+      ],
+      "clarification": "",
+      "reason": "",
+      "rejected_quotes": [],
+      "attempts": 1,
+      "raw_answer": "",
+      "top_score": 0.6271,
+      "gate": 0.4535,
+      "trace": {
+        "queries": [
+          "На какие слои разделена память агента в проекте дня 11 и где хранится долговременная память?",
+          "проект день 11 day11 память агента agent memory слои памяти memory layers кратковременная short-term рабочая working долговременная long-term память где хранится storage persistence AgentMemory MemoryManager LongTermMemory memory.py README"
+        ],
+        "candidates": 12,
+        "dropped": [],
+        "day_filter": "day11-",
+        "after_filter": 12,
+        "final": 4
+      },
+      "usage": {
+        "prompt_tokens": 1633,
+        "completion_tokens": 519
+      },
+      "has_sources": true,
+      "has_quotes": true,
+      "right_source": true,
+      "facts": 1.0,
+      "lexical": {
+        "method": "ключевые элементы",
+        "score": 1.0,
+        "checked": [
+          "ShortTermMemory",
+          "WorkingMemory",
+          "LongTermMemory",
+          "memory_store.json"
+        ],
+        "unsupported": []
+      },
+      "judge": {
+        "verdict": "supported",
+        "unsupported_claims": [],
+        "comment": "Цитаты подтверждают все утверждения ответа о трёх слоях памяти и хранении долговременной памяти в файле memory_store.json с переживанием перезапуска.",
+        "usage": {
+          "prompt_tokens": 418,
+          "completion_tokens": 94
+        }
+      }
+    },
+    {
+      "id": 4,
+      "type": "project",
+      "q": "Почему в проекте дня 16 подключение к mcp.deepwiki.com/sse завершилось ошибкой и какой адрес нужно использовать вместо него?",
+      "expected": "Сервер отвечает 410 Gone — старый SSE-адрес DeepWiki отключён; нужно использовать https://mcp.deepwiki.com/mcp (Streamable HTTP).",
+      "expected_sources": [
+        "day16-mcp-connect/README.md"
+      ],
+      "question": "Почему в проекте дня 16 подключение к mcp.deepwiki.com/sse завершилось ошибкой и какой адрес нужно использовать вместо него?",
+      "status": "unverified",
+      "answer": "Не знаю: не удалось подтвердить ответ дословными цитатами из базы.",
+      "sources": [],
+      "quotes": [],
+      "clarification": "Уточните, пожалуйста, вопрос: о каком проекте или дне челленджа идёт речь и что именно нужно узнать? Ближайшие темы в базе: «День 16. Подключение к MCP и получение списка инструментов (официальны»; «День 16. Подключение MCP»; «День 16. То же самое, но БЕЗ SDK — голым JSON-RPC поверх HTTP».",
+      "reason": "unverified",
+      "rejected_quotes": [
+        {
+          "n": 4,
+          "text": "Старый адрес `https://mcp.deepwiki.com/sse` DeepWiki отключил (отвечает `410 Gone`). Используйте только `/mcp` (Streamable HTTP) — он стоит по умолчанию.",
+          "why": "нет во фрагменте дословно"
+        }
+      ],
+      "attempts": 2,
+      "raw_answer": "Подключение к `https://mcp.deepwiki.com/sse` завершилось ошибкой, потому что DeepWiki отключил этот адрес: сервер отвечает `410 Gone`. Вместо него нужно использовать `https://mcp.deepwiki.com/mcp` по протоколу Streamable HTTP [4].",
+      "top_score": 0.5349,
+      "gate": 0.4535,
+      "trace": {
+        "queries": [
+          "Почему в проекте дня 16 подключение к mcp.deepwiki.com/sse завершилось ошибкой и какой адрес нужно использовать вместо него?",
+          "день 16 day16 MCP mcp.deepwiki.com/sse подключение ошибка SSE Server-Sent Events DeepWiki URL endpoint адрес замена альтернативный endpoint MCP server Python README"
+        ],
+        "candidates": 12,
+        "dropped": [],
+        "day_filter": "day16-",
+        "after_filter": 12,
+        "final": 4
+      },
+      "usage": {
+        "prompt_tokens": 3296,
+        "completion_tokens": 600
+      },
+      "has_sources": false,
+      "has_quotes": false,
+      "right_source": false,
+      "facts": 0.0,
+      "lexical": null,
+      "judge": null
+    },
+    {
+      "id": 5,
+      "type": "project",
+      "q": "Какие инструменты зарегистрированы в MCP-сервере CRM в проекте дня 17?",
+      "expected": "Три инструмента: search_clients, get_client_orders, create_order.",
+      "expected_sources": [
+        "day17-mcp-tool/"
+      ],
+      "question": "Какие инструменты зарегистрированы в MCP-сервере CRM в проекте дня 17?",
+      "status": "unknown",
+      "answer": "Не знаю",
+      "sources": [],
+      "quotes": [],
+      "clarification": "Укажите фрагмент с кодом регистрации инструментов в mcp_server.py, чтобы определить все три названия.",
+      "reason": "model",
+      "rejected_quotes": [],
+      "attempts": 1,
+      "raw_answer": "",
+      "top_score": 0.6484,
+      "gate": 0.4535,
+      "trace": {
+        "queries": [
+          "Какие инструменты зарегистрированы в MCP-сервере CRM в проекте дня 17?",
+          "CRM MCP-сервер проект день 17 day17 зарегистрированные инструменты tools registered tools MCP server CRM список инструментов tool registration register_tools list_tools Python README файлы server.py mcp_server.py tools.py functions classes"
+        ],
+        "candidates": 12,
+        "dropped": [],
+        "day_filter": "day17-",
+        "after_filter": 12,
+        "final": 4
+      },
+      "usage": {
+        "prompt_tokens": 1356,
+        "completion_tokens": 243
+      },
+      "has_sources": false,
+      "has_quotes": false,
+      "right_source": false,
+      "facts": 0.0,
+      "lexical": null,
+      "judge": null
+    },
+    {
+      "id": 6,
+      "type": "project",
+      "q": "Как в пайплайне дня 19 проверяется, что данные не исказились при передаче между инструментами?",
+      "expected": "На каждом стыке сравниваются контрольные суммы sha256 того, что отдал один шаг и получил следующий; в конце файл перечитывается с диска и сверяется. Всего 6 проверок; при ошибке пайплайн останавливается и ничего не сохраняет.",
+      "expected_sources": [
+        "day19-mcp-pipeline/pipeline.py",
+        "day19-mcp-pipeline/README.md"
+      ],
+      "question": "Как в пайплайне дня 19 проверяется, что данные не исказились при передаче между инструментами?",
+      "status": "answered",
+      "answer": "Передача проверяется сравнением sha256 на стыках: между search и клиентом, клиентом и summarize, а также клиентом и save_to_file. Дополнительно проверяется, что предложения extractive-выжимки есть в найденных статьях, все предложения выжимки попали в отчёт, а записанный файл совпадает с отчётом после перечитывания [3]. Если проверка не проходит, пайплайн останавливается и ничего не сохраняет [3].",
+      "sources": [
+        {
+          "n": 3,
+          "source": "day19-mcp-pipeline/README.md",
+          "section": "День 19. Композиция MCP-инструментов > Как проверяется передача данных",
+          "chunk_id": "day19-mcp-pipeline/README.md#structure-004",
+          "quoted": true
+        }
+      ],
+      "quotes": [
+        {
+          "n": 3,
+          "text": "search → клиент | sha256 текста, который пришёл клиенту, и тот, что посчитал сервер",
+          "source": "day19-mcp-pipeline/README.md",
+          "section": "День 19. Композиция MCP-инструментов > Как проверяется передача данных"
+        },
+        {
+          "n": 3,
+          "text": "клиент → summarize | sha256 текста, который получил summarize, и того, что вернул search",
+          "source": "day19-mcp-pipeline/README.md",
+          "section": "День 19. Композиция MCP-инструментов > Как проверяется передача данных"
+        },
+        {
+          "n": 3,
+          "text": "выжимка из исходных данных | каждое предложение выжимки есть в найденных статьях (режим `extractive`)",
+          "source": "day19-mcp-pipeline/README.md",
+          "section": "День 19. Композиция MCP-инструментов > Как проверяется передача данных"
+        },
+        {
+          "n": 3,
+          "text": "клиент → save_to_file | sha256 записанного на диск и отправленного",
+          "source": "day19-mcp-pipeline/README.md",
+          "section": "День 19. Композиция MCP-инструментов > Как проверяется передача данных"
+        },
+        {
+          "n": 3,
+          "text": "Если любая проверка не прошла или шаг вернул ошибку (ничего не найдено, неверный ключ и т.п.) — пайплайн останавливается и **ничего не сохраняет**.",
+          "source": "day19-mcp-pipeline/README.md",
+          "section": "День 19. Композиция MCP-инструментов > Как проверяется передача данных"
+        }
+      ],
+      "clarification": "",
+      "reason": "",
+      "rejected_quotes": [],
+      "attempts": 1,
+      "raw_answer": "",
+      "top_score": 0.6574,
+      "gate": 0.4535,
+      "trace": {
+        "queries": [
+          "Как в пайплайне дня 19 проверяется, что данные не исказились при передаче между инструментами?",
+          "пайплайн дня 19 day19 проверка целостности данных при передаче между инструментами data integrity validation between tools межинструментное взаимодействие data transfer verification checksum hash сериализация десериализация validation assert функции классы файлы pipeline.py tools.py validators.py"
+        ],
+        "candidates": 12,
+        "dropped": [],
+        "day_filter": "day19-",
+        "after_filter": 12,
+        "final": 4
+      },
+      "usage": {
+        "prompt_tokens": 1263,
+        "completion_tokens": 489
+      },
+      "has_sources": true,
+      "has_quotes": true,
+      "right_source": true,
+      "facts": 1.0,
+      "lexical": {
+        "method": "ключевые элементы",
+        "score": 1.0,
+        "checked": [
+          "search",
+          "summarize",
+          "save_to_file",
+          "extractive"
+        ],
+        "unsupported": []
+      },
+      "judge": {
+        "verdict": "partial",
+        "unsupported_claims": [
+          "все предложения выжимки попали в отчёт",
+          "записанный файл совпадает с отчётом после перечитывания"
+        ],
+        "comment": "Цитаты подтверждают проверки sha256 на указанных стыках, наличие предложений extractive-выжимки в найденных статьях и остановку пайплайна без сохранения при сбое, но не подтверждают попадание всех предложений в отчёт и совпадение файла с отчётом после перечитывания.",
+        "usage": {
+          "prompt_tokens": 424,
+          "completion_tokens": 228
+        }
+      }
+    },
+    {
+      "id": 7,
+      "type": "project",
+      "q": "Как оркестратор в проекте дня 20 различает одноимённые инструменты search на разных MCP-серверах?",
+      "expected": "Инструменты регистрируются в общем каталоге под именами «сервер__инструмент» — kb__search и files__search; вызов маршрутизируется на сервер по префиксу.",
+      "expected_sources": [
+        "day20-mcp-orchestration/"
+      ],
+      "question": "Как оркестратор в проекте дня 20 различает одноимённые инструменты search на разных MCP-серверах?",
+      "status": "answered",
+      "answer": "Оркестратор различает одноимённые инструменты по составному имени «сервер__инструмент»: например, `kb__search` и `files__search`. При вызове имя маршрутизируется к нужному серверу, а исходным именем инструмента остаётся `search` [1].",
+      "sources": [
+        {
+          "n": 1,
+          "source": "day20-mcp-orchestration/orchestrator.py",
+          "section": "шапка модуля: docstring и импорты + константа BASE_DIR + константа SEP + class ServerSpec + class Route + class TraceEntry",
+          "chunk_id": "day20-mcp-orchestration/orchestrator.py#structure-000",
+          "quoted": true
+        }
+      ],
+      "quotes": [
+        {
+          "n": 1,
+          "text": "инструменты всех серверов собираются в один список под именами «сервер__инструмент» (kb__search, files__search): одноимённые инструменты разных серверов не конфликтуют;",
+          "source": "day20-mcp-orchestration/orchestrator.py",
+          "section": "шапка модуля: docstring и импорты + константа BASE_DIR + константа SEP + class ServerSpec + class Route + class TraceEntry"
+        },
+        {
+          "n": 1,
+          "text": "вызов «kb__search» уходит именно на сервер kb под исходным именем search;",
+          "source": "day20-mcp-orchestration/orchestrator.py",
+          "section": "шапка модуля: docstring и импорты + константа BASE_DIR + константа SEP + class ServerSpec + class Route + class TraceEntry"
+        }
+      ],
+      "clarification": "",
+      "reason": "",
+      "rejected_quotes": [],
+      "attempts": 1,
+      "raw_answer": "",
+      "top_score": 0.6683,
+      "gate": 0.4535,
+      "trace": {
+        "queries": [
+          "Как оркестратор в проекте дня 20 различает одноимённые инструменты search на разных MCP-серверах?",
+          "день 20 day20 оркестратор orchestrator различает одноимённые инструменты search на разных MCP-серверах MCP servers tool name collision уникальная идентификация инструмента маршрутизация вызовов tool namespace server name Python функция class файл README"
+        ],
+        "candidates": 12,
+        "dropped": [],
+        "day_filter": "day20-",
+        "after_filter": 12,
+        "final": 4
+      },
+      "usage": {
+        "prompt_tokens": 1401,
+        "completion_tokens": 318
+      },
+      "has_sources": true,
+      "has_quotes": true,
+      "right_source": true,
+      "facts": 1.0,
+      "lexical": {
+        "method": "ключевые элементы",
+        "score": 1.0,
+        "checked": [
+          "kb__search",
+          "files__search",
+          "search"
+        ],
+        "unsupported": []
+      },
+      "judge": {
+        "verdict": "supported",
+        "unsupported_claims": [],
+        "comment": "Цитаты подтверждают составное именование, различение одноимённых инструментов и маршрутизацию вызова к нужному серверу с сохранением исходного имени search.",
+        "usage": {
+          "prompt_tokens": 309,
+          "completion_tokens": 184
+        }
+      }
+    },
+    {
+      "id": 8,
+      "type": "project",
+      "q": "Какая стратегия chunking лучше нашла нужный раздел в проекте дня 21 на эмбеддингах AITunnel и с каким результатом?",
+      "expected": "Стратегия structure: нужный раздел в топ-3 для всех 15 вопросов (section@3 = 1.0) против 0.5 у fixed.",
+      "expected_sources": [
+        "day21-doc-index/README.md"
+      ],
+      "question": "Какая стратегия chunking лучше нашла нужный раздел в проекте дня 21 на эмбеддингах AITunnel и с каким результатом?",
+      "status": "answered",
+      "answer": "На эмбеддингах AITunnel лучше сработала стратегия structure: нужный раздел найден для всех 15 вопросов, section@3 = 1.0 [2].",
+      "sources": [
+        {
+          "n": 2,
+          "source": "day21-doc-index/README.md",
+          "section": "День 21. Индексация документов > Результаты сравнения > Выводы",
+          "chunk_id": "day21-doc-index/README.md#structure-008",
+          "quoted": true
+        }
+      ],
+      "quotes": [
+        {
+          "n": 2,
+          "text": "- **structure на семантических эмбеддингах нашла нужный файл и нужный раздел\n  для всех 15 вопросов** (hit@3 = 1.0, section@3 = 1.0) — лучший результат из четырёх.",
+          "source": "day21-doc-index/README.md",
+          "section": "День 21. Индексация документов > Результаты сравнения > Выводы"
+        }
+      ],
+      "clarification": "",
+      "reason": "",
+      "rejected_quotes": [],
+      "attempts": 2,
+      "raw_answer": "",
+      "top_score": 0.583,
+      "gate": 0.4535,
+      "trace": {
+        "queries": [
+          "Какая стратегия chunking лучше нашла нужный раздел в проекте дня 21 на эмбеддингах AITunnel и с каким результатом?",
+          "проект день 21 day21 chunking strategy стратегия чанкинга разбиение на фрагменты text splitting chunk_size chunk_overlap RecursiveCharacterTextSplitter эмбеддинги AITunnel AITunnel embeddings поиск нужного раздела retrieval semantic search лучший результат метрики качество точность score recall README Python функции классы файлы"
+        ],
+        "candidates": 12,
+        "dropped": [
+          [
+            "day21-doc-index/README.md#structure-003",
+            "уже 2 чанка из day21-doc-index/README.md"
+          ]
+        ],
+        "day_filter": "day21-",
+        "after_filter": 12,
+        "final": 4
+      },
+      "usage": {
+        "prompt_tokens": 3584,
+        "completion_tokens": 963
+      },
+      "has_sources": true,
+      "has_quotes": true,
+      "right_source": true,
+      "facts": 1.0,
+      "lexical": {
+        "method": "ключевые элементы",
+        "score": 0.8,
+        "checked": [
+          "15",
+          "1.0",
+          "AITunnel",
+          "structure",
+          "section"
+        ],
+        "unsupported": [
+          "AITunnel"
+        ]
+      },
+      "judge": {
+        "verdict": "partial",
+        "unsupported_claims": [
+          "Что результат получен именно на эмбеддингах AITunnel"
+        ],
+        "comment": "Цитата подтверждает, что structure была лучшей среди четырёх стратегий и нашла нужный раздел для всех 15 вопросов с section@3 = 1.0, но не указывает, что использовались эмбеддинги AITunnel.",
+        "usage": {
+          "prompt_tokens": 269,
+          "completion_tokens": 221
+        }
+      }
+    },
+    {
+      "id": 9,
+      "type": "general",
+      "q": "Что такое Model Context Protocol (MCP)?",
+      "expected": "Открытый протокол, который стандартизирует подключение языковых моделей к внешним инструментам и данным: MCP-сервер публикует инструменты, клиент их вызывает.",
+      "expected_sources": [],
+      "question": "Что такое Model Context Protocol (MCP)?",
+      "status": "unverified",
+      "answer": "Не знаю: не удалось подтвердить ответ дословными цитатами из базы.",
+      "sources": [],
+      "quotes": [],
+      "clarification": "Уточните, пожалуйста, вопрос: о каком проекте или дне челленджа идёт речь и что именно нужно узнать? Ближайшие темы в базе: «День 17. Агент, который вызывает MCP-инструменты и использует результа»; «День 16. То же самое, но БЕЗ SDK — голым JSON-RPC поверх HTTP»; «Общие функции MCP-клиента для pipeline.py».",
+      "reason": "unverified",
+      "rejected_quotes": [
+        {
+          "n": 1,
+          "text": "Model Context Protocol (MCP) — открытый протокол, который стандартизирует подключение языковых моделей к внешним инструментам и данным.",
+          "why": "нет во фрагменте дословно"
+        }
+      ],
+      "attempts": 2,
+      "raw_answer": "MCP — открытый протокол, который стандартизирует подключение языковых моделей к внешним инструментам и данным [1].",
+      "top_score": 0.4554,
+      "gate": 0.4535,
+      "trace": {
+        "queries": [
+          "Что такое Model Context Protocol (MCP)?",
+          "Model Context Protocol (MCP) — что это, Model Context Protocol, MCP protocol, MCP server, MCP client, Python SDK, mcp, README, implementation, classes, functions, files"
+        ],
+        "candidates": 12,
+        "dropped": [],
+        "day_filter": null,
+        "after_filter": 12,
+        "final": 4
+      },
+      "usage": {
+        "prompt_tokens": 3297,
+        "completion_tokens": 427
+      },
+      "has_sources": false,
+      "has_quotes": false,
+      "right_source": null,
+      "facts": 0.0,
+      "lexical": null,
+      "judge": null
+    },
+    {
+      "id": 10,
+      "type": "general",
+      "q": "Что такое function calling у языковых моделей?",
+      "expected": "Модель получает описания функций с JSON Schema параметров и вместо текста может вернуть имя функции и аргументы; приложение выполняет функцию и возвращает результат модели.",
+      "expected_sources": [],
+      "question": "Что такое function calling у языковых моделей?",
+      "status": "answered",
+      "answer": "Function calling позволяет модели запросить вызов функции вместо текстового ответа [1].",
+      "sources": [
+        {
+          "n": 1,
+          "source": "day19-mcp-pipeline/tools_impl.py",
+          "section": "константа KNOWLEDGE_BASE + константа _WORD_RE + def _words + def _stem (часть 2/3)",
+          "chunk_id": "day19-mcp-pipeline/tools_impl.py#structure-002",
+          "quoted": true
+        }
+      ],
+      "quotes": [
+        {
+          "n": 1,
+          "text": "Function calling позволяет модели запросить вызов функции вместо текстового ответа.",
+          "source": "day19-mcp-pipeline/tools_impl.py",
+          "section": "константа KNOWLEDGE_BASE + константа _WORD_RE + def _words + def _stem (часть 2/3)"
+        }
+      ],
+      "clarification": "",
+      "reason": "",
+      "rejected_quotes": [],
+      "attempts": 2,
+      "raw_answer": "",
+      "top_score": 0.5013,
+      "gate": 0.4535,
+      "trace": {
+        "queries": [
+          "Что такое function calling у языковых моделей?",
+          "function calling языковых моделей, tool calling, вызов функций LLM, function_call, tool_calls, OpenAI API, API-инструменты, schema, JSON Schema, Python function, callable, README"
+        ],
+        "candidates": 12,
+        "dropped": [
+          [
+            "day20-mcp-orchestration/agent.py#structure-004",
+            "sim 0.4453 < порога 0.452"
+          ],
+          [
+            "day17-mcp-tool/README.md#structure-005",
+            "sim 0.4392 < порога 0.452"
+          ],
+          [
+            "day10-context-strategies/compare.py#structure-012",
+            "sim 0.4320 < порога 0.452"
+          ],
+          [
+            "day17-mcp-tool/demo_call.py#structure-003",
+            "sim 0.4274 < порога 0.452"
+          ]
+        ],
+        "day_filter": null,
+        "after_filter": 8,
+        "final": 4
+      },
+      "usage": {
+        "prompt_tokens": 3066,
+        "completion_tokens": 508
+      },
+      "has_sources": true,
+      "has_quotes": true,
+      "right_source": null,
+      "facts": 0.5,
+      "lexical": {
+        "method": "ключевые элементы",
+        "score": 1.0,
+        "checked": [
+          "Function",
+          "calling"
+        ],
+        "unsupported": []
+      },
+      "judge": {
+        "verdict": "supported",
+        "unsupported_claims": [],
+        "comment": "Цитата прямо подтверждает, что function calling позволяет модели запросить вызов функции вместо текстового ответа.",
+        "usage": {
+          "prompt_tokens": 185,
+          "completion_tokens": 70
+        }
+      }
+    },
+    {
+      "id": 11,
+      "type": "absent",
+      "q": "Как в проекте дня 18 развернуть MCP-сервер в Kubernetes?",
+      "expected": "В базе нет проекта дня 18 и нет ничего про Kubernetes — модель должна сказать, что ответа в базе нет, и ничего не придумывать.",
+      "expected_sources": [],
+      "question": "Как в проекте дня 18 развернуть MCP-сервер в Kubernetes?",
+      "status": "unknown",
+      "answer": "Не знаю: в базе не нашлось достаточно релевантных фрагментов, чтобы ответить.",
+      "sources": [],
+      "quotes": [],
+      "clarification": "В базе нет проекта дня 18. Есть дни: 9, 10, 11, 16, 17, 19, 20, 21. Уточните, пожалуйста, какой проект вас интересует?",
+      "reason": "no_day",
+      "rejected_quotes": [],
+      "attempts": 0,
+      "raw_answer": "",
+      "top_score": 0.5369,
+      "gate": 0.4535,
+      "trace": {},
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0
+      },
+      "said_unknown": true,
+      "asked_clarification": true
+    },
+    {
+      "id": 12,
+      "type": "absent",
+      "q": "Какой рецепт борща указан в документации?",
+      "expected": "Вопрос не относится к базе — фильтр должен отсечь все фрагменты, модель должна ответить, что информации нет.",
+      "expected_sources": [],
+      "question": "Какой рецепт борща указан в документации?",
+      "status": "unknown",
+      "answer": "Не знаю: в базе не нашлось достаточно релевантных фрагментов, чтобы ответить.",
+      "sources": [],
+      "quotes": [],
+      "clarification": "Уточните, пожалуйста, вопрос: о каком проекте или дне челленджа идёт речь и что именно нужно узнать? Ближайшие темы в базе: «День 11. Демонстрация модели памяти: что попадает в каждый слой»; «Поиск по индексу — чтобы своими глазами увидеть, что находит каждая ст»; «День 20. Orchestration MCP».",
+      "reason": "gate",
+      "rejected_quotes": [],
+      "attempts": 0,
+      "raw_answer": "",
+      "top_score": 0.275,
+      "gate": 0.4535,
+      "trace": {},
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0
+      },
+      "said_unknown": true,
+      "asked_clarification": true
+    },
+    {
+      "id": 13,
+      "type": "vague",
+      "q": "А сколько там было в итоге?",
+      "expected": "Непонятно, о чём речь — ассистент должен сказать «не знаю» и попросить уточнить, о каком проекте и какой величине идёт речь.",
+      "expected_sources": [],
+      "question": "А сколько там было в итоге?",
+      "status": "unknown",
+      "answer": "Не знаю: в базе не нашлось достаточно релевантных фрагментов, чтобы ответить.",
+      "sources": [],
+      "quotes": [],
+      "clarification": "Уточните, пожалуйста, вопрос: о каком проекте или дне челленджа идёт речь и что именно нужно узнать? Ближайшие темы в базе: «День 11. Результаты: модель памяти агента»; «День 9. Результаты сравнения: сжатие истории»; «День 10. Результаты сравнения: 3 стратегии управления контекстом».",
+      "reason": "gate",
+      "rejected_quotes": [],
+      "attempts": 0,
+      "raw_answer": "",
+      "top_score": 0.3761,
+      "gate": 0.4535,
+      "trace": {},
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0
+      },
+      "said_unknown": true,
+      "asked_clarification": true
+    },
+    {
+      "id": 14,
+      "type": "vague",
+      "q": "Что там с сервером?",
+      "expected": "В базе много серверов (MCP-серверы дней 16–20) — ассистент должен попросить уточнить, какой сервер и что именно интересует.",
+      "expected_sources": [],
+      "question": "Что там с сервером?",
+      "status": "unknown",
+      "answer": "Не знаю: в базе не нашлось достаточно релевантных фрагментов, чтобы ответить.",
+      "sources": [],
+      "quotes": [],
+      "clarification": "Уточните, пожалуйста, вопрос: о каком проекте или дне челленджа идёт речь и что именно нужно узнать? Ближайшие темы в базе: «День 20. Orchestration MCP»; «День 17. Прямой вызов MCP-инструментов из приложения — без LLM»; «День 16. Подключение MCP».",
+      "reason": "gate",
+      "rejected_quotes": [],
+      "attempts": 0,
+      "raw_answer": "",
+      "top_score": 0.4515,
+      "gate": 0.4535,
+      "trace": {},
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0
+      },
+      "said_unknown": true,
+      "asked_clarification": true
+    }
+  ]
+}
